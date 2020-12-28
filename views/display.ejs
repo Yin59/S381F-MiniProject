@@ -1,0 +1,22 @@
+<html>
+
+<head>
+    <title>Restaurant</title>
+</head>
+
+<body>
+    <H2><%= restaurants.length %>Restauants</H2>
+    <ul>
+        <% for (var r of restaurants) { %>
+        <li><a href="/details?_id=<%= r._id %>">
+                <%=r.name%>
+            </a>
+        </li>
+    <% } %>
+    </ul>
+
+
+    <a href="/create">create</a>
+</body>
+
+</html>

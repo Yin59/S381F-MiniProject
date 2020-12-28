@@ -1,0 +1,37 @@
+<html>
+    <body>
+        <input type='hidden' name='_id' value="<%= restaurants._id %>">
+        <% if(restaurants.photo&& restaurants.photomimetype){ %>
+            <img src="data:image/<%= restaurants.photomimetype %>;base64,<%= restaurants.photo %>"><br>
+          <% } %>
+        Restaurant ID: <%= restaurants.restaurant_id%><br>
+        Name: <%= restaurants.name%><br>
+        Borough: <%= restaurants.demo%><br>
+        Cuisine:<%= restaurants.cuisine %><br>
+        Street:<%= restaurants.address.street %><br>
+        Building:<%= restaurants.address.building %><br>
+        Zipcode:<%= restaurants.address.zipcode %><br>
+        GPS Coordinates(lon.):<%= restaurants.address.coord[0] %>
+        GPS Coordinates(lat.):<%= restaurants.address.coord[1] %>
+        Owner:<%= restaurants.owner %>
+
+        <% for (var g of restaurants.grades){%>
+            <ul>
+        <li>user:<%= g.user %></a></li>
+            <li>score:<%= g.score %></a></li>
+            </ul>
+        <% } %>
+          <% if(isOwner){ %>
+          <a href="edit?_id=<%= restaurants._id %>">edit</a><br>
+          <a href="delete?_id=<%= restaurants._id %>">delete</a><br>
+          <% } %>
+          <% if(!isRated){ %>
+          <a href="rate?_id=<%= restaurants._id %>">rate</a><br>
+          <% } else { %>
+          <p>You have been rated </p>
+          <% } %>
+
+          <a href="map?_id=<%= restaurants._id %>&lon=<%= restaurants.address.coord[0]%>&lat=<%= restaurants.address.coord[1]%>">map</a><br>
+      <a href="/read">
+    </body>
+</html>
